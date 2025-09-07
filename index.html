@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free PDF to ZIP Converter | Combine Multiple PDFs</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Free PDF to ZIP Converter",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "description": "Combine and compress multiple PDF files into a single ZIP archive online for free. No registration required. Secure and instant.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Convert PDFs to a ZIP File",
+      "description": "Learn how to bundle multiple PDF documents into one ZIP file using our free online tool.",
+      "totalTime": "PT2M",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Upload PDF files",
+          "text": "Select all the PDF documents you want to include in your ZIP archive by dragging them into the upload area or clicking to browse.",
+          "image": "https://yourwebsite.com/upload-step.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Create the archive",
+          "text": "Initiate the process by clicking the 'Create ZIP File' button. Our tool will securely compile your files.",
+          "image": "https://yourwebsite.com/create-step.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Download your ZIP file",
+          "text": "Once the processing is complete, click the download button to save the ZIP archive containing all your PDFs to your computer.",
+          "image": "https://yourwebsite.com/download-step.jpg"
+        }
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --gray: #6c757d;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .pdf-to-zip-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        ol, ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .upload-container {
+            border: 2px dashed var(--primary);
+            border-radius: var(--border-radius);
+            padding: 40px 20px;
+            text-align: center;
+            margin: 30px 0;
+            transition: var(--transition);
+            background-color: var(--light);
+        }
+
+        .upload-container.dragover {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background-color: var(--success);
+        }
+
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+
+        .btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+        }
+
+        .file-list {
+            margin: 20px 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+        }
+
+        .file-name {
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-size {
+            color: var(--gray);
+            margin-left: 10px;
+        }
+
+        .remove-file {
+            color: var(--danger);
+            cursor: pointer;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .progress-container {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .status-message {
+            text-align: center;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .error-message {
+            color: var(--danger);
+            text-align: center;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .success-message {
+            color: var(--success);
+            text-align: center;
+            margin: 15px 0;
+            display: none;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+
+        h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header {
+                padding: 30px 15px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pdf-to-zip-container">
+        <header>
+            <h1>Free PDF to ZIP Converter</h1>
+            <p>Combine and compress multiple PDF files into a single, downloadable ZIP archive. 100% free, no watermarks, no registration required.</p>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>Compress, Combine, and Organize Your PDFs</h2>
+                <p>Tired of downloading dozens of PDFs one by one? Our tool lets you bundle any number of PDF documents into a neat ZIP file. Perfect for archiving reports, downloading collections, or sending multiple files via email.</p>
+            </section>
+
+            <section>
+                <h2>How to Bundle Your PDFs into a ZIP File</h2>
+                <ol>
+                    <li><strong>Select Your PDFs</strong>: Drag & drop files into the area below or click to choose. Select one or dozens.</li>
+                    <li><strong>Create Your ZIP</strong>: Click the "Create ZIP File" button. Our server will securely compile everything.</li>
+                    <li><strong>Download Your Archive</strong>: Your download will start automatically, containing all your original PDFs in a compressed folder.</li>
+                </ol>
+            </section>
+
+            <div class="upload-container" id="dropZone">
+                <div class="upload-icon">📁</div>
+                <div class="upload-text">Choose PDF Files or Drop Them Here</div>
+                <input type="file" id="fileInput" accept=".pdf" multiple style="display: none;">
+                <button class="btn" id="browseBtn">Browse Files</button>
+            </div>
+
+            <div class="file-list" id="fileList"></div>
+
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="status-message" id="statusMessage"></div>
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <div style="text-align: center;">
+                <button class="btn" id="processBtn" disabled>Create ZIP File</button>
+                <a class="btn btn-success" id="downloadBtn" style="display: none;">Download Your ZIP File Now!</a>
+            </div>
+
+            <section>
+                <h3>Why Use Our PDF to ZIP Tool?</h3>
+                <ul>
+                    <li>✅ <strong>Batch Processing</strong>: Combine an unlimited number of PDFs in one go.</li>
+                    <li>✅ <strong>Total Privacy</strong>: Your files are processed on our secure server and deleted immediately after conversion. We cannot see your files.</li>
+                    <li>✅ <strong>Lossless Compression</strong>: Your original PDFs are bundled without any loss in quality.</li>
+                    <li>✅ <strong>Zero Cost</strong>: completely free tool with no hidden limits.</li>
+                    <li>✅ <strong>Universal Compatibility</strong>: The resulting ZIP file can be opened on Windows, Mac, and Linux.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-item">
+                    <h4>Is there a limit to the number or size of PDFs I can add?</h4>
+                    <p>You can upload up to 50 PDF files at once, with a total maximum size of 100MB per batch. This ensures fast processing for all users.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Will the quality of my PDFs be reduced?</h4>
+                    <p>No. This is not a PDF compressor, but a PDF *archiver*. The ZIP compression applies to the container, not the PDFs inside. Your original files remain unchanged and at their original quality.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are my files safe and private?</h4>
+                    <p>Extremely safe. The entire process is automated. Your files are never stored on our server for more than a few minutes and are permanently deleted immediately after you download your ZIP file or after a 1-hour timeout. They are never shared, viewed, or used for any purpose.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What does this tool actually do?</h4>
+                    <p>It takes all the PDF files you provide and packages them into a single, standard ZIP file. This makes them easier to manage, download, and share as a single unit.</p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>© 2023 Free PDF to ZIP Converter. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const fileList = document.getElementById('fileList');
+            const processBtn = document.getElementById('processBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const statusMessage = document.getElementById('statusMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            let uploadedFiles = [];
+            const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100MB
+            const MAX_FILE_COUNT = 50;
+
+            // Event listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            processBtn.addEventListener('click', processFiles);
+            
+            // Drag and drop events
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+            
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('dragover');
+            });
+            
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+
+            // File handling functions
+            function handleFileSelect(e) {
+                handleFiles(e.target.files);
+            }
+            
+            function handleFiles(files) {
+                hideMessages();
+                
+                if (uploadedFiles.length + files.length > MAX_FILE_COUNT) {
+                    showError(`You can only upload up to ${MAX_FILE_COUNT} files at once.`);
+                    return;
+                }
+                
+                let totalSize = uploadedFiles.reduce((sum, file) => sum + file.size, 0);
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    if (file.type !== 'application/pdf') {
+                        showError('Only PDF files are allowed.');
+                        return;
+                    }
+                    
+                    totalSize += file.size;
+                    if (totalSize > MAX_FILE_SIZE) {
+                        showError(`Total file size cannot exceed 100MB.`);
+                        return;
+                    }
+                    
+                    uploadedFiles.push(file);
+                    addFileToList(file);
+                }
+                
+                processBtn.disabled = uploadedFiles.length === 0;
+            }
+            
+            function addFileToList(file) {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                
+                const fileInfo = document.createElement('div');
+                fileInfo.className = 'file-name';
+                fileInfo.textContent = file.name;
+                
+                const fileSize = document.createElement('span');
+                fileSize.className = 'file-size';
+                fileSize.textContent = formatFileSize(file.size);
+                
+                const removeBtn = document.createElement('span');
+                removeBtn.className = 'remove-file';
+                removeBtn.textContent = '×';
+                removeBtn.addEventListener('click', () => {
+                    const index = uploadedFiles.indexOf(file);
+                    if (index > -1) {
+                        uploadedFiles.splice(index, 1);
+                    }
+                    fileItem.remove();
+                    processBtn.disabled = uploadedFiles.length === 0;
+                });
+                
+                fileInfo.appendChild(fileSize);
+                fileItem.appendChild(fileInfo);
+                fileItem.appendChild(removeBtn);
+                fileList.appendChild(fileItem);
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            function processFiles() {
+                if (uploadedFiles.length === 0) {
+                    showError('Please select at least one PDF file.');
+                    return;
+                }
+                
+                hideMessages();
+                progressContainer.style.display = 'block';
+                statusMessage.textContent = 'Processing your files...';
+                processBtn.disabled = true;
+                
+                const formData = new FormData();
+                uploadedFiles.forEach(file => {
+                    formData.append('pdfFiles', file);
+                });
+                
+                // Simulate processing for demonstration
+                // In a real implementation, you would use fetch to send to your server
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressBar.style.width = `${progress}%`;
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        simulateSuccess();
+                    }
+                }, 100);
+            }
+            
+            function simulateSuccess() {
+                progressContainer.style.display = 'none';
+                statusMessage.textContent = '';
+                successMessage.textContent = 'Your ZIP file is ready!';
+                successMessage.style.display = 'block';
+                downloadBtn.style.display = 'inline-block';
+                processBtn.style.display = 'none';
+                
+                // In a real implementation, you would set the download URL
+                // downloadBtn.href = response.downloadUrl;
+            }
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+            
+            function hideMessages() {
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+                statusMessage.textContent = '';
+            }
+        });
+    </script>
+</body>
+</html>
